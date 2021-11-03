@@ -12,6 +12,12 @@ import './assets/css/global.css'
 import axios from 'axios'
 // 配置請求根路徑
 axios.defaults.baseURL = 'https://lianghj.top:8888/api/private/v1/'
+axios.interceptors.request.use(config => {
+  // console.log(config);
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  // 最後必須 return config
+  return config
+})
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
