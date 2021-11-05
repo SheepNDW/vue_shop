@@ -297,7 +297,7 @@ export default {
       this.editDialogVisible = true;
     },
     // 修改角色資料並提交
-    async editRoleInfo() {
+    editRoleInfo() {
       this.$refs.editRolesFormRef.validate(async (valid) => {
         if (!valid) return;
 
