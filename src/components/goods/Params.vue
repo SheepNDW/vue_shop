@@ -362,10 +362,10 @@ export default {
       });
     },
     // 點擊按鈕, 展示修改的對話框
-    async showEditDialog(attr_id) {
+    async showEditDialog(attrId) {
       // 查詢當前參數的信息
       const { data: res } = await this.$http.get(
-        `categories/${this.cateId}/attributes/${attr_id}`,
+        `categories/${this.cateId}/attributes/${attrId}`,
         { params: { attr_sel: this.activeName } }
       );
 
@@ -402,7 +402,7 @@ export default {
       });
     },
     // 根據id刪除對應參數
-    async removeParams(attr_id) {
+    async removeParams(attrId) {
       const confirmResult = await this.$confirm(
         "此操作將永久刪除該參數, 是否繼續?",
         "提示",
@@ -420,7 +420,7 @@ export default {
 
       // 進行刪除
       const { data: res } = await this.$http.delete(
-        `categories/${this.cateId}/attributes/${attr_id}`
+        `categories/${this.cateId}/attributes/${attrId}`
       );
       if (res.meta.status !== 200) {
         return this.$message.error("刪除失敗! ");

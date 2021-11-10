@@ -18,15 +18,27 @@ import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 
+// 引入 NProgress 對應的js和css
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 import axios from 'axios'
 // 配置請求根路徑
 axios.defaults.baseURL = 'https://lianghj.top:8888/api/private/v1/'
+// 在requset攔截器中, 展示進度條 NProgress.start()
 axios.interceptors.request.use(config => {
   // console.log(config);
+  NProgress.start()
   config.headers.Authorization = window.sessionStorage.getItem('token')
   // 最後必須 return config
   return config
 })
+// 在response攔截器中, 隱藏進度條 NProgress.done()
+axios.interceptors.response.use(config => {
+  NProgress.done()
+  return config
+})
+
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
